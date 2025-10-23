@@ -5,7 +5,7 @@
 
 int main(){
 	srand(time(NULL));
-	int opc, vld, acm, rsv;
+	int opc, vld, acm = 0, rsv;
 	char card[17];
 	
 	//PROGRAMA
@@ -43,9 +43,13 @@ int main(){
 					vld = card[i] - '0';
 					if (i%2==0)
 					{
-						rsv = vld / 10;
-						vld = vld % 10;
-						vld = rsv + vld;
+						vld = vld * 2;
+						if (vld >= 10)
+						{
+							rsv = vld / 10;
+							vld = vld % 10;
+							vld = rsv + vld;
+						}
 						acm += vld;
 					}
 					else
@@ -60,7 +64,7 @@ int main(){
 					printf("Número de cartão válidado>>>> %s\n\n", card);
 					break; 	
 				}
-				
+				acm = 0;
 		
 			} while (1);
 		}
@@ -77,9 +81,13 @@ int main(){
 				vld = card[i] - '0';
 					if (i%2==0)
 					{
-						rsv = vld / 10;
-						vld = vld % 10;
-						vld = rsv + vld;
+						vld = vld * 2;
+						if (vld >= 10)
+						{
+							rsv = vld / 10;
+							vld = vld % 10;
+							vld = rsv + vld;
+						}
 						acm += vld;
 					}
 					else
@@ -96,7 +104,8 @@ int main(){
 					system("clear");
 					printf("Número de cartão inválido>>>> %s\n\n", card);
 				}
-								
+				acm = 0;
+			
 			}
 		
 	} while (1);
