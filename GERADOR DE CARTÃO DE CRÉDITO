@@ -35,46 +35,88 @@ int main(){
 	//GERAÇÃO E VALIDAÇÃO DA OPÇÃO 1
 		if (opc == 1)
 		{
-			do
+			
+			for (int i = 0; i < 15; i++)
 			{
-				for (int i = 0; i < 16; i++)
-				{
-					card[i] = '0' + rand() % 10;
-					vld = card[i] - '0';
-					if (i%2==0)
-					{
-						vld = vld * 2;
-						if (vld >= 10)
-						{
-							rsv = vld / 10;
-							vld = vld % 10;
-							vld = rsv + vld;
-						}
-						acm += vld;
-					}
-					else
-						acm += vld;
-				}	
-					
-				card[16] = 0;	
+				card[i] = '0' + rand() % 10;
+				vld = card[i] - '0';
 				
-				if (acm % 10 == 0)
+				if (i%2==0)
 				{
-					system("clear");
-					printf("Número de cartão válidado>>>> %s\n\n", card);
-					break; 	
+					vld = vld * 2;
+					if (vld >= 10)
+					{
+						rsv = vld / 10;
+						vld = vld % 10;
+						vld = rsv + vld;
+					}
+					
+				acm += vld;
+				
 				}
-				acm = 0;
+				else
+				acm += vld;
+			}
+				
+				card[16] = 0;
+						
+				for (int i = 0; i < 10; i++)
+				{			
+					card[15] = i + '0';
+					vld = i;
+					
+					acm += vld;
+					
+					if (acm % 10 == 0)
+					{
+						system("clear");
+						printf("Número de cartão válidado>>>> %s\n\n", card);
+						break; 	
+					}
+					
+					acm -= vld;
+					
+				}
+				
+			acm = 0;	
 		
-			} while (1);
 		}
 		
 	//VALIDADADOR DE NÚMERO DE CARTÃO
 		if (opc == 2)
 		{
 			system("clear");
-			printf("Digite o Número do cartão:\n");
-			scanf(" %[^\n]s", card);
+			
+			do
+			{
+				for (int i = 0; i < 16; i++)
+					card[i] = -1;
+					
+				card[16] = 0;
+				printf("Digite o Número do cartão:\n");
+				scanf(" %[^\n]s", card);
+				
+				if (card[16] != 0)
+				{
+					system("clear");
+					printf("Você excedeu o limite de caractéries.\nTente Novamente!\n\n");
+					continue;
+				}
+				
+				for (int i = 0; i < 16; i++)
+					if (card[i] == -1)
+					{
+						system("clear");
+						printf("Caractéries insuficientes.\nTente Novamente!\n\n");
+						continue;
+					}
+					
+				if (card[16] == 0)
+					if (card[15] != -1)
+						break;
+							
+			} while (1);
+			
 			
 			for (int i = 0; i < 16; i++)
 			{
@@ -94,22 +136,24 @@ int main(){
 						acm += vld;
 				}
 				
-				if (acm % 10 == 0)
-				{
-					system("clear");
-					printf("Número de cartão válido>>>> %s\n\n", card); 	
-				}				
-				else
-				{
-					system("clear");
-					printf("Número de cartão inválido>>>> %s\n\n", card);
-				}
-				acm = 0;
-			
+			if (acm % 10 == 0)
+			{
+				system("clear");
+				printf("Número de cartão válido>>>> %s\n\n", card); 	
+			}	
+							
+			else
+			{
+				system("clear");
+				printf("Número de cartão inválido>>>> %s\n\n", card);
 			}
+			
+			acm = 0;
+			
+		}
 		
-	} while (1);
-		
+	
+	} while (1);		
 	
 	return 0;
 }
