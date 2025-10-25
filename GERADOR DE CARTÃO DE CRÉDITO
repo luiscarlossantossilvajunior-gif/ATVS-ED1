@@ -90,7 +90,7 @@ int main(){
 			do
 			{
 				for (int i = 0; i < 16; i++)
-					card[i] = -1;
+					card[i] = '.';
 					
 				card[16] = 0;
 				printf("Digite o Número do cartão:\n");
@@ -98,21 +98,25 @@ int main(){
 				
 				if (card[16] != 0)
 				{
+					
 					system("clear");
-					printf("Você excedeu o limite de caractéries.\nTente Novamente!\n\n");
+					printf("Limite de digitos atingido/Digite somente números.\nTente Novamente...\n\n");
 					continue;
 				}
 				
 				for (int i = 0; i < 16; i++)
-					if (card[i] == -1)
+				{	
+					vld = card[i];
+					if (vld < 48 || vld > 57)
 					{
 						system("clear");
-						printf("Caractéries insuficientes.\nTente Novamente!\n\n");
+						printf("Quantidade de digitos insuficientes/Digite somente números.\nTente Novamente...\n\n");
 						continue;
 					}
+				}
 					
 				if (card[16] == 0)
-					if (card[15] != -1)
+					if (card[15] != '.')
 						break;
 							
 			} while (1);
