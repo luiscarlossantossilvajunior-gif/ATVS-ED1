@@ -15,6 +15,13 @@ int main(){
 		printf("Digite um número qualquer: ");
 		scanf(" %d", &n);
 	
+		if (!n)
+		{
+			system("clear");
+			printf("Parte 1 finalizada!\n");
+			break;
+		}
+	
 		int conj[n];
 		int cont = 0, test = 1;
 	
@@ -36,13 +43,6 @@ int main(){
 					break;
 				}							
 			}
-		}
-
-		if (!n)
-		{
-			system("clear");
-			printf("Parte 1 finalizada!\n");
-			break;
 		}	
 	
 		float perc = ((float)(S - cont) * 100) / S;
@@ -68,7 +68,7 @@ int main(){
 		{	
 			for (int j = 0; j < n; j++)
 			{		
-				conj[j] = rand() % (n*2);
+				conj[j] = rand() % ((n*2) + 1);
 				for (int k = j - 1; k >= 0; k--)
 					if (conj[j] == conj[k] && k > -1)
 					{
@@ -101,4 +101,3 @@ int main(){
 	
 	return 0;
 }
-
