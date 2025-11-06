@@ -12,13 +12,30 @@ int main(){
 	
 	int xis[x], ips[y];
 
-//SORTEIO X E Y	
+//SORTEIO X	
 	for (int i = 0; i < x; i++)
+	{
 		xis[i] = rand() % ((x + y) + 1);
-		
-	for (int i = 0; i < y; i++)
-		ips[i] = rand() % ((x + y) + 1);	
+		for (int j = i - 1; j >= 0; j--)
+			if (xis[i] == xis[j])
+			{
+				i--;
+				break;
+			}
+	}
 
+//SORTEIO Y		
+	for (int i = 0; i < y; i++)
+	{
+		ips[i] = rand() % ((x + y) + 1);
+		for (int j = i - 1; j >= 0; j--)
+			if (ips[i] == ips[j])
+			{
+				i--;
+				break;
+			}
+	}
+	
 //NUMEROS DE X	
 	printf("Números do vetor x: ");
 	
