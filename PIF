@@ -93,6 +93,8 @@ int main(){
 			printf("\nEscolha a carta que você deseja substituir: ");
 			scanf(" %d", &esc);
 			
+			system("clear");
+			
 			for (int i = 0; i < N; i++)
 			{
 				flag = (maior + menor) / 2;
@@ -137,7 +139,7 @@ int main(){
 				cartas[i] = 1 + rand() % 10;
 				break;
 			}
-					
+	
 		//Ordenação das cartas após substituição
 		for (int i = 0; i < N - 1; i++){
 			int troca;
@@ -149,17 +151,15 @@ int main(){
 					cartas[j] = troca;
 				}
 		}
-							
-		printf("\nCartas recebidas:\n");
-				
+
+		printf("Cartas recebidas:\n");
+		
 		//Printando as cartas recebidas
 		for (int i = 0; i < N; i++)				
 			if (cartas[i] > 0)
 				printf("[%02d] ", cartas[i]);
-					
+		
 		printf("\n");
-				
+	
 	} while (1);
 }
-
-
