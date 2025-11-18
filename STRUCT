@@ -22,6 +22,7 @@ typedef struct{
 
 int main(){
 	Pessoa cad[N];
+	int cont = 0;
 	
 	//COLETA DE DADOS
 	for (int i = 0; i < N; i++)
@@ -29,6 +30,9 @@ int main(){
 		printf("Cadastro da pessoa %d:\n", i + 1);
 		printf("Digite seu nome: \n");
 		scanf(" %[^\n]s", cad[i].nome);
+		
+		if (strcmp(cad[i].nome, "exit") == 0)
+			break;
 		
 		printf("Digite seu cpf: \n");
 		scanf(" %[^\n]s", cad[i].cpf);
@@ -55,11 +59,12 @@ int main(){
 		scanf(" %[^\n]s", cad[i].resid.cidade);
 	
 		system("clear");
+		cont++;
 	}
 	
 	//ORDENAÇÃO DE DADOS
-	for (int i = 0; i < N - 1; i++)
-		for (int j = i + 1; j < N; j++){
+	for (int i = 0; i < cont - 1; i++)
+		for (int j = i + 1; j < cont; j++){
 			Pessoa troca;
 			if (strcmp(cad[i].nome,cad[j].nome) > 0)
 			{
@@ -69,8 +74,11 @@ int main(){
 			}
 		}
 		
+	if (!cont)
+		printf("Nenhuma pessoa foi cadastrada!");
+		
 	//IMPRESSÃO DE DADOS
-	for (int i = 0; i < N; i++)
+	for (int i = 0; i < cont; i++)
 	{
 		printf("Cadastro %d:\n", i + 1);
 		
